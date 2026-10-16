@@ -21,6 +21,8 @@ Ajoutez un fichier Markdown ou MDX dans l’une de ces collections :
 
 Les métadonnées sont validées au build. Un nouveau contenu apparaît automatiquement dans les sections correspondantes. Les exemples dans le dépôt servent de modèles.
 
+La stratégie de sélection des sources et le processus de publication sont décrits dans [la politique de veille](docs/veille.md).
+
 ## Déploiement
 
 Le workflow GitHub Actions déploie automatiquement `main` sur GitHub Pages. Activez GitHub Pages avec la source « GitHub Actions » dans les réglages du dépôt.
