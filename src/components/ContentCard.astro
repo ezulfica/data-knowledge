@@ -1,0 +1,13 @@
+---
+import { label, date } from '../lib/content';
+const { entry, kind = 'article' } = Astro.props;
+const href = kind === 'news' ? `/data-knowledge/discover/${entry.id}/` : kind === 'exercise' ? `/data-knowledge/practice/${entry.id}/` : `/data-knowledge/learn/${entry.id}/`;
+---
+<article class="card content-card">
+  <div class="meta">{kind === 'news' ? 'Discover' : kind === 'exercise' ? 'Practice' : 'Learn'} · {label(entry.data.domain)}</div>
+  <h3><a href={href}>{entry.data.title}</a></h3>
+  <p>{entry.data.description}</p>
+  <div class="meta">{entry.data.technology} · {date(entry.data.updatedAt || entry.data.publishedAt)}</div>
+  <div class="tag-row">{entry.data.tags.slice(0, 3).map((tag: string) => <span class="tag">{tag}</span>)}</div>
+</article>
+<style>.content-card{display:flex;flex-direction:column}.content-card p{color:var(--muted);margin:.1rem 0 1.2rem;font-size:.93rem}.content-card .meta:last-of-type{margin-top:auto}</style>

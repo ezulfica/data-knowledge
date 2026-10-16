@@ -1,0 +1,28 @@
+---
+title: "Pourquoi Spark effectue des shuffles"
+description: "Voir ce qui se passe lorsque les données doivent changer de partition pour exécuter une agrégation ou une jointure."
+domain: data-engineering
+technology: Apache Spark
+difficulty: intermediate
+tags: [spark, shuffle, performance]
+publishedAt: 2026-10-16
+relatedArticles: [sql-join-strategies, parquet-partitioning]
+---
+
+## Les partitions déterminent le parallélisme
+
+Spark traite plusieurs partitions en parallèle. Tant qu’une transformation peut travailler sur chaque partition indépendamment, le moteur peut enchaîner les opérations sans déplacer les données.
+
+## Un shuffle redistribue les données
+
+Une opération `groupBy` doit réunir les lignes d’une même clé. Si ces lignes sont réparties entre plusieurs partitions, Spark écrit des fichiers intermédiaires, les transfère et les relit dans de nouvelles partitions. C’est un shuffle.
+
+```python
+sales.groupBy("country").sum("amount")
+```
+
+Cette étape introduit un coût disque et réseau, ainsi qu’un risque de déséquilibre si une clé concentre beaucoup plus de lignes que les autres.
+
+## Observer avant d’optimiser
+
+Le plan physique et l’interface Spark montrent les étapes de shuffle, leur volume et les tâches lentes. Réduire les shuffles est utile seulement lorsque la redistribution est réellement évitable ; une jointure ou une agrégation correcte doit parfois redistribuer les données.

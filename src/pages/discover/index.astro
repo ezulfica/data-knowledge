@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import ContentCard from '../../components/ContentCard.astro'; import { getCollection } from 'astro:content'; import { domains } from '../../lib/content';
+const news = (await getCollection('news')).sort((a,b)=>b.data.publishedAt.getTime()-a.data.publishedAt.getTime());
+---
+<BaseLayout title="Discover — Data Knowledge"><section class="wrap"><p class="eyebrow">Discover</p><h1 class="page-title">Ce qui mérite<br/>votre attention.</h1><p class="lede">Des évolutions techniques sélectionnées et replacées dans leur contexte. Pas de flux infini, seulement ce qui change votre manière de construire.</p><div class="filters"><span>Filtrer par domaine :</span><a class="active" href="#all">Tout</a>{Object.entries(domains).map(([key,name]) => <a href={`#${key}`}>{name}</a>)}</div><div class="feed">{news.map(entry => <ContentCard entry={entry} kind="news" />)}</div></section></BaseLayout>
+<style>.filters{display:flex;gap:12px;flex-wrap:wrap;margin:52px 0 25px;font-size:.85rem;color:var(--muted)}.filters a{border:1px solid var(--line);padding:4px 10px;border-radius:99px}.filters .active{border-color:var(--accent);color:var(--accent)}.feed{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}@media(max-width:720px){.feed{grid-template-columns:1fr}}</style>

@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import ContentCard from '../../components/ContentCard.astro'; import { getCollection } from 'astro:content';
+const exercises = await getCollection('exercises');
+---
+<BaseLayout title="Practice — Data Knowledge"><section class="wrap"><p class="eyebrow">Practice</p><h1 class="page-title">Raisonner avant de vérifier.</h1><p class="lede">Des situations techniques concrètes pour articuler les mécanismes, les compromis et les décisions d’architecture.</p><div class="grid grid-3 exercises">{exercises.map(entry=><ContentCard entry={entry} kind="exercise"/>)}</div></section></BaseLayout>
+<style>.exercises{margin-top:52px}</style>

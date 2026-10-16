@@ -1,0 +1,22 @@
+---
+title: "Comprendre les stratégies de jointure SQL"
+description: "Lire les compromis entre nested loop, hash join et merge join pour diagnostiquer une requête."
+domain: analytics-engineering
+technology: SQL
+difficulty: intermediate
+tags: [sql, joins, query-planning]
+publishedAt: 2026-10-16
+relatedArticles: [spark-shuffles, dbt-materializations]
+---
+
+## Une jointure est un problème d’accès aux données
+
+Le planificateur choisit une stratégie selon les volumes, les statistiques, les index et l’ordre disponible. La syntaxe SQL ne force généralement pas l’algorithme employé.
+
+## Hash join
+
+Le moteur construit une table de hachage à partir de l’entrée la plus petite, puis recherche les clés de l’autre entrée. Cette approche est efficace pour des jointures d’égalité, mais demande de la mémoire et peut dégrader si l’estimation de taille est mauvaise.
+
+## Merge join
+
+Lorsque les deux entrées sont déjà ordonnées sur la clé, le moteur peut les parcourir ensemble. Le tri préalable peut toutefois coûter plus cher que le bénéfice. Consultez le plan d’exécution, plutôt que de déduire la stratégie d’après la requête seule.

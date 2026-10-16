@@ -1,0 +1,22 @@
+---
+title: "Comprendre le partitionnement Parquet"
+description: "Réduire le volume lu sans multiplier les petits fichiers ni figer un mauvais découpage."
+domain: data-engineering
+technology: Apache Parquet
+difficulty: intermediate
+tags: [parquet, partitioning, storage]
+publishedAt: 2026-10-16
+relatedArticles: [dbt-materializations]
+---
+
+## Pourquoi partitionner
+
+Le partitionnement organise les fichiers selon une colonne, souvent une date. Un moteur peut alors ignorer les partitions qui ne répondent pas au filtre : c’est le *partition pruning*.
+
+## Choisir une clé
+
+Une colonne de date est souvent pertinente lorsque les requêtes filtrent naturellement le temps. Une clé très cardinalisée, comme un identifiant utilisateur, crée trop de dossiers et trop de petits fichiers. Le gain de lecture disparaît alors dans les métadonnées et les opérations de fichiers.
+
+## Partitionnement et tri
+
+Le partitionnement sélectionne des groupes de fichiers ; le tri ou le clustering améliore la lecture à l’intérieur de ces groupes. Les deux répondent à des problèmes différents et peuvent être complémentaires.

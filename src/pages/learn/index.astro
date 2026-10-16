@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import ContentCard from '../../components/ContentCard.astro'; import { getCollection } from 'astro:content'; import { domains } from '../../lib/content';
+const articles = await getCollection('articles');
+---
+<BaseLayout title="Learn — Data Knowledge"><section class="wrap"><p class="eyebrow">Learn</p><h1 class="page-title">Construire une compréhension qui dure.</h1><p class="lede">Des articles approfondis, organisés par domaine, technologie et concept. Chaque contenu a une place, des prérequis et des prolongements.</p>{Object.entries(domains).map(([key,name]) => { const entries=articles.filter(a=>a.data.domain===key); return entries.length ? <section class="domain"><p class="eyebrow">{name}</p><h2 class="section-title">{name}</h2><div class="grid grid-3">{entries.map(entry=><ContentCard entry={entry}/>)}</div></section> : null; })}</section></BaseLayout>
+<style>.domain{margin-top:65px}.domain>.eyebrow{margin-bottom:3px}</style>

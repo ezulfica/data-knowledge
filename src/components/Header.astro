@@ -1,0 +1,21 @@
+<header class="site-header">
+  <a class="brand" href="/data-knowledge/">Data <span>Knowledge</span></a>
+  <nav aria-label="Navigation principale">
+    <a href="/data-knowledge/discover/">Discover</a>
+    <a href="/data-knowledge/learn/">Learn</a>
+    <a href="/data-knowledge/practice/">Practice</a>
+  </nav>
+  <div class="header-actions">
+    <a class="search-link" href="/data-knowledge/search/" aria-label="Rechercher">⌕ <span>Search</span></a>
+    <button class="theme-toggle" type="button" aria-label="Changer de thème">◐</button>
+  </div>
+</header>
+<script>
+  const button = document.querySelector('.theme-toggle');
+  const update = (theme: string) => document.documentElement.dataset.theme = theme;
+  update(localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  button?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next); update(next);
+  });
+</script>

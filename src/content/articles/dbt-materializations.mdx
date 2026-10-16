@@ -1,0 +1,74 @@
+---
+title: "Comprendre les matérialisations dbt"
+description: "Choisir entre vue, table, incrémental et éphémère en fonction du coût, de la fraîcheur et de la lisibilité."
+domain: analytics-engineering
+technology: dbt
+difficulty: intermediate
+tags: [dbt, SQL, data-modeling]
+publishedAt: 2026-10-16
+updatedAt: 2026-10-16
+relatedArticles: [sql-join-strategies, parquet-partitioning]
+prerequisites: [sql-fundamentals]
+exercises: [dbt-incremental-scenario]
+---
+
+## Le problème que résout une matérialisation
+
+Un modèle dbt est une requête SQL et une décision sur la façon dont son résultat existe dans l’entrepôt. Cette décision influence le temps de calcul, le coût, la fraîcheur des données et la manière dont les équipes peuvent réutiliser le modèle.
+
+Une matérialisation ne rend pas une requête correcte ou rapide par magie. Elle définit surtout **quand** la requête est exécutée et **où** son résultat est conservé.
+
+## Les quatre stratégies courantes
+
+| Stratégie | Résultat | Bonne utilisation |
+| --- | --- | --- |
+| Vue | SQL enregistré, calcul à la lecture | Transformations légères, couche sémantique |
+| Table | Résultat stocké et reconstruit | Jeux de données stables et coûteux à requêter |
+| Incrémental | Nouvelles lignes ou partitions traitées | Tables volumineuses qui reçoivent des ajouts |
+| Éphémère | CTE intégrée au modèle consommateur | Petites transformations intermédiaires |
+
+## Une vue ne stocke pas le résultat
+
+Avec une vue, l’entrepôt exécute la requête lorsque quelqu’un lit la vue. C’est agréable pour garder des données fraîches et éviter la duplication, mais une vue qui enchaîne des jointures lourdes peut déplacer un coût important vers chaque lecteur.
+
+```sql
+{{ config(materialized='view') }}
+
+select customer_id, sum(amount) as lifetime_value
+from {{ ref('fct_orders') }}
+group by 1
+```
+
+Utilisez-la lorsque la logique est simple ou lorsque les consommateurs ont besoin du résultat le plus récent. Mesurez le plan de requête avant de remplacer systématiquement les tables par des vues.
+
+## Une table échange fraîcheur contre prévisibilité
+
+Une table matérialisée est reconstruite par dbt. Les lecteurs profitent alors d’un résultat déjà calculé. C’est souvent un bon choix pour une couche de reporting très consultée, à condition que le délai entre deux exécutions reste acceptable.
+
+> Le bon rythme de rafraîchissement dépend de la décision prise avec les données, pas seulement de la fréquence d’arrivée des données.
+
+## Le modèle incrémental
+
+Un modèle incrémental évite de recalculer tout l’historique. Lors de la première exécution, dbt crée la table. Aux exécutions suivantes, la condition `is_incremental()` limite la source aux données utiles.
+
+```sql
+{{ config(materialized='incremental', unique_key='transaction_id') }}
+
+select *
+from {{ ref('stg_transactions') }}
+{% raw %}{% if is_incremental() %}
+where updated_at >= (select max(updated_at) from {{ this }}) - interval '7 days'
+{% endif %}{% endraw %}
+```
+
+La fenêtre de sept jours est ici un choix métier : elle couvre les corrections tardives. Sans cette fenêtre, une correction sur une ancienne transaction ne serait jamais appliquée. Avec une fenêtre trop large, le gain incrémental s’effrite.
+
+## Les compromis à expliciter
+
+La stratégie incrémentale demande une clé unique fiable, une règle claire pour les mises à jour et parfois un mécanisme de suppression. Les différentes plateformes proposent des stratégies telles que `merge`, `delete+insert` ou `insert_overwrite`; elles n’ont pas les mêmes coûts ni les mêmes garanties.
+
+Écrivez des tests sur l’unicité et la fraîcheur. Planifiez aussi une reconstruction complète occasionnelle lorsque le modèle peut accumuler des incohérences historiques.
+
+## Pour décider
+
+Commencez par trois questions : quel est le volume concerné, combien de temps le résultat peut-il être périmé, et quelles lignes peuvent changer après leur arrivée ? La matérialisation devient alors une décision observable, à ajuster avec les temps d’exécution et les besoins des utilisateurs.
