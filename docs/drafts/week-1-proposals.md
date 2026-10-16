@@ -59,4 +59,18 @@ Ce document est une boîte de réception éditoriale. Ces propositions ne sont p
 
 ## Décision attendue
 
-La semaine de test ne vise pas cinq publications à tout prix. Les propositions Iceberg, vLLM et OpenTelemetry sont les meilleures candidates initiales. dbt dépend de la substance de la release. DuckDB est volontairement conservé comme cas de rejet potentiel afin de vérifier que le workflow privilégie l’impact à la cadence.
+La semaine de test ne vise pas cinq publications à tout prix. Iceberg et vLLM sont les meilleures candidates initiales. dbt dépend de la substance de la release. DuckDB est volontairement conservé comme cas de rejet potentiel afin de vérifier que le workflow privilégie l’impact à la cadence.
+
+## Revue critique indépendante
+
+Une revue éditoriale a challengé les propositions après leur sélection.
+
+| Proposition | Décision révisée | Motif |
+| --- | --- | --- |
+| Iceberg 1.12.0 | Retravailler puis publier si justifié | Très bon angle lakehouse, mais les changements précis, leur date et leur compatibilité doivent être confirmés dans les notes de version avant de leur attribuer un impact. |
+| dbt Core v2.0.8 | Retravailler fortement | Le numéro de version ne constitue pas à lui seul une actualité. Sans changement substantiel confirmé, le sujet doit devenir un article Learn sur la méthode d’upgrade dbt. |
+| vLLM v0.31.0 | Publier après recherche | L’angle production est solide. Toute promesse de performance ou de compatibilité doit être accompagnée de la configuration reproductible correspondante. |
+| OpenTelemetry Collector | Rejeter et remplacer | La référence de release doit être vérifiée et l’angle actuel est trop générique pour une actualité établie. Le sujet peut devenir un article Learn sur la fiabilité de la télémétrie. |
+| DuckDB v1.5.6 | Rejeter pour publication | C’est un bon exemple de release de correctifs à archiver dans la veille interne, sans en faire artificiellement une fiche Discover. |
+
+La sélection de départ est donc réduite à deux candidats Discover : Iceberg et vLLM, après vérification détaillée de leurs notes de version. Cette réduction est un résultat attendu du processus de qualité.
