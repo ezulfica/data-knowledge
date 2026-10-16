@@ -45,11 +45,33 @@ Les créateurs sont des sources de découverte et d’interprétation. Les affir
 
 Une actualité peut être rejetée. Une journée sans publication est normale.
 
+## Rôle de l’IA et validation
+
+Le workflow de veille est piloté par IA. L’agent peut gérer la collecte, la déduplication, la recherche de sources primaires, la synthèse, la préparation des fichiers MDX, les liens entre contenus et les contrôles de métadonnées. Les contenus restent des fichiers versionnés dans Git ; GitHub Actions se charge du build et du déploiement après intégration sur `main`.
+
+L’automatisation ne doit pas publier de sa propre initiative. Avant chaque intégration, une validation éditoriale vérifie les sources, les affirmations, le périmètre de l’analyse et les relations proposées. Le futur registre de sources sert à produire une boîte de réception de sujets et non un flux de publication automatique.
+
 ## Cadence recommandée
 
 - Quotidien : releases des projets prioritaires, blogs fournisseurs, GitHub Trending et Hacker News.
 - Hebdomadaire : newsletters, blogs d’équipes et créateurs identifiés.
 - Mensuel ou événementiel : conférences, papiers, RFC et versions majeures.
+
+### Cadence de publication
+
+Viser **un article Discover de qualité par jour ouvré au maximum**, soit trois à cinq par semaine. Publier zéro article est préférable à une fiche faible ou redondante. Réserver chaque semaine une place à un contenu Learn ou à une mise à jour substantielle d’article existant ; les exercices sont ajoutés lorsqu’un sujet s’y prête.
+
+La rotation thématique sert de garde-fou :
+
+| Jour indicatif | Thème prioritaire |
+| --- | --- |
+| Lundi | Data engineering : moteurs, stockage, streaming, orchestration |
+| Mardi | Analytics engineering : dbt, SQL, qualité, couche sémantique |
+| Mercredi | AI engineering : modèles, inférence, RAG, agents, évaluation |
+| Jeudi | Architecture : plateformes, fiabilité, coût, sécurité, systèmes distribués |
+| Vendredi | Open source, retours terrain ou approfondissement Learn/Practice |
+
+Cette rotation est indicative. Une annonce majeure ou un sujet mieux documenté peut prendre la place prévue, et un même thème peut revenir plusieurs jours de suite lorsqu’il a une valeur pédagogique claire.
 
 ## Registre de sources
 

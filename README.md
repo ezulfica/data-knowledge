@@ -23,6 +23,14 @@ Les métadonnées sont validées au build. Un nouveau contenu apparaît automati
 
 La stratégie de sélection des sources et le processus de publication sont décrits dans [la politique de veille](docs/veille.md).
 
+## Workflow éditorial assisté par IA
+
+Data Knowledge est conçu pour être maintenu par un workflow éditorial piloté par IA : l’agent collecte les signaux, retrouve les sources primaires, élimine les doublons, évalue la pertinence, prépare les contenus MDX et relie les nouveautés aux articles et exercices existants. Le site reste entièrement statique : les contenus validés sont versionnés dans Git puis publiés par GitHub Actions.
+
+Le workflow actuel est volontairement semi-automatique : l’agent prépare les propositions et les fichiers de contenu, puis une validation éditoriale humaine précède le commit sur `main`. Cette étape protège la qualité des sources et empêche la publication automatique de contenus incomplets ou inexacts.
+
+À terme, le registre de sources prévu dans [la politique de veille](docs/veille.md) alimentera une boîte de réception de sujets. Il ne devra pas contourner cette validation éditoriale.
+
 ## Déploiement
 
 Le workflow GitHub Actions déploie automatiquement `main` sur GitHub Pages. Activez GitHub Pages avec la source « GitHub Actions » dans les réglages du dépôt.
