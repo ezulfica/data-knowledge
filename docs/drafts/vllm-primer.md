@@ -5,6 +5,19 @@
 **Lecteur :** data/AI engineer qui sait ce qu’est un LLM, mais n’a jamais déployé de serveur d’inférence.  
 **Question :** que fait un moteur comme vLLM, et quels concepts faut-il connaître avant d’interpréter une release ?
 
+## Lexique de départ
+
+| Terme | Définition utile pour cet article |
+| --- | --- |
+| **Inférence** | Phase pendant laquelle un modèle déjà entraîné traite une entrée et produit une sortie. Ici, il s’agit de générer les tokens d’une réponse. |
+| **Serving** | Ensemble des mécanismes qui rendent un modèle accessible comme service : recevoir les requêtes, les planifier, exécuter le modèle et renvoyer les réponses. |
+| **Token** | Unité de texte manipulée par le modèle. Une réponse est produite token par token. |
+| **GPU** | Accélérateur utilisé pour les calculs du modèle. Sa mémoire limite notamment le nombre de requêtes actives. |
+| **KV cache** | État intermédiaire conservé pendant la génération afin que le modèle puisse réutiliser le contexte déjà traité. |
+| **Batching** | Traitement de plusieurs requêtes ensemble pour mieux utiliser le matériel. Le batching continu autorise l’entrée et la sortie de requêtes pendant le traitement. |
+
+Les définitions de KV cache et de PagedAttention sont développées dans le [papier vLLM](https://arxiv.org/abs/2309.06180). Le README officiel documente les capacités de serving et de continuous batching proposées par le projet.
+
 ## Corpus lu avant rédaction
 
 1. **README officiel de vLLM** — définit le projet comme une bibliothèque d’inférence et de serving de LLM, et répertorie le continuous batching, le prefix caching, PagedAttention et le serveur compatible OpenAI. [Lire la source](https://github.com/vllm-project/vllm/blob/main/README.md)
