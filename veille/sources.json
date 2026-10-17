@@ -1,0 +1,12 @@
+[
+  {"name":"Apache Iceberg","theme":"data-engineering","feed":"https://github.com/apache/iceberg/releases.atom"},
+  {"name":"Apache Spark","theme":"data-engineering","feed":"https://github.com/apache/spark/releases.atom"},
+  {"name":"Apache Flink","theme":"data-engineering","feed":"https://github.com/apache/flink/releases.atom"},
+  {"name":"dbt Core","theme":"analytics-engineering","feed":"https://github.com/dbt-labs/dbt-core/releases.atom"},
+  {"name":"DuckDB","theme":"data-engineering","feed":"https://github.com/duckdb/duckdb/releases.atom"},
+  {"name":"ClickHouse","theme":"data-engineering","feed":"https://github.com/ClickHouse/ClickHouse/releases.atom"},
+  {"name":"vLLM","theme":"ai-engineering","feed":"https://github.com/vllm-project/vllm/releases.atom"},
+  {"name":"llama.cpp","theme":"ai-engineering","feed":"https://github.com/ggml-org/llama.cpp/releases.atom"},
+  {"name":"LangChain","theme":"ai-engineering","feed":"https://github.com/langchain-ai/langchain/releases.atom"},
+  {"name":"OpenTelemetry Collector","theme":"architecture","feed":"https://github.com/open-telemetry/opentelemetry-collector-releases/releases.atom"}
+]

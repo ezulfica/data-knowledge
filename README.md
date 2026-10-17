@@ -31,6 +31,12 @@ Le workflow actuel est volontairement semi-automatique : l’agent prépare les 
 
 À terme, le registre de sources prévu dans [la politique de veille](docs/veille.md) alimentera une boîte de réception de sujets. Il ne devra pas contourner cette validation éditoriale.
 
+## Collecte automatique de veille
+
+Le registre initial est dans `veille/sources.json`. Le workflow `Collect technology watch signals` s’exécute chaque jour à 06:15 UTC et peut être lancé manuellement depuis GitHub Actions. Il interroge les flux Atom de releases officielles, écrit les nouveaux signaux dans `veille/inbox/` et ouvre ou met à jour la pull request `automation/veille`.
+
+Cette automatisation ne rédige ni ne publie d’articles. Les signaux doivent être regroupés, vérifiés et arbitrés avant de devenir un brouillon éditorial.
+
 ## Déploiement
 
 Le workflow GitHub Actions déploie automatiquement `main` sur GitHub Pages. Activez GitHub Pages avec la source « GitHub Actions » dans les réglages du dépôt.

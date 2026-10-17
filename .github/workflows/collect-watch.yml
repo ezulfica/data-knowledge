@@ -1,0 +1,42 @@
+name: Collect technology watch signals
+
+on:
+  schedule:
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/collect-watch.mjs
+      - name: Create or update the review pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- veille/inbox; then exit 0; fi
+          git config user.name 'data-knowledge-bot[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin automation/veille:automation/veille || true
+          if git show-ref --verify --quiet refs/heads/automation/veille; then
+            git checkout automation/veille
+            git merge --no-edit "$GITHUB_SHA"
+          else
+            git checkout -b automation/veille
+          fi
+          git add veille/inbox
+          git commit -m "Collect watch signals"
+          git push origin HEAD:automation/veille
+          if ! gh pr list --base main --head automation/veille --state open --json number --jq 'length' | grep -q '[1-9]'; then
+            gh pr create --base main --head automation/veille --title 'Collect technology watch signals' --body 'Automated source collection. Review and qualify signals before merging; this pull request does not publish articles.'
+          fi
