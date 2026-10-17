@@ -49,7 +49,7 @@ Une actualité peut être rejetée. Une journée sans publication est normale.
 
 Le workflow de veille est piloté par IA. L’agent peut gérer la collecte, la déduplication, la recherche de sources primaires, la synthèse, la préparation des fichiers MDX, les liens entre contenus et les contrôles de métadonnées. Les contenus restent des fichiers versionnés dans Git ; GitHub Actions se charge du build et du déploiement après intégration sur `main`.
 
-L’automatisation ne doit pas publier de sa propre initiative. Avant chaque intégration, une validation éditoriale vérifie les sources, les affirmations, le périmètre de l’analyse et les relations proposées. Le futur registre de sources sert à produire une boîte de réception de sujets et non un flux de publication automatique.
+L’automatisation ne doit pas publier de sa propre initiative. Avant chaque intégration, une validation éditoriale vérifie les sources, les affirmations, le périmètre de l’analyse et les relations proposées. Cette validation comprend une relecture contradictoire par un second agent, distinct du rédacteur. Le futur registre de sources sert à produire une boîte de réception de sujets et non un flux de publication automatique.
 
 ## Cadence recommandée
 

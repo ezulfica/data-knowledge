@@ -47,7 +47,19 @@ Le plan répond à quatre niveaux :
 
 L’article relie explicitement ses prérequis, contenus associés et sources. Les exemples de code sont choisis pour illustrer un mécanisme ; ils ne sont pas ajoutés comme décoration.
 
-## 6. Relecture avant publication
+## 6. Relecture contradictoire avant publication
+
+Chaque brouillon destiné à être publié est challengé par un second agent, distinct de celui qui a rédigé le texte. Il reçoit le corpus, le registre d’affirmations et le brouillon, puis cherche activement :
+
+- les affirmations sans source ou dont la source ne soutient pas réellement la formulation ;
+- les conclusions trop générales, les causalités non démontrées et les benchmarks sans contexte ;
+- les prérequis implicites, abréviations oubliées et passages difficiles pour le lecteur visé ;
+- les contradictions avec les sources, les oublis de compromis et les liens pédagogiques artificiels ;
+- la confusion entre une actualité spécifique et un contenu Learn intemporel.
+
+La réponse de ce second agent est conservée avec le brouillon. Le rédacteur corrige le texte ou justifie explicitement chaque point écarté. Un désaccord factuel non résolu bloque la publication.
+
+## 7. Relecture finale avant publication
 
 La relecture vérifie : précision du titre, pertinence et concision du lexique, développement des abréviations à leur première occurrence, exactitude des affirmations, source de chaque fait important, citation locale de chaque paragraphe factuel, distinction entre faits et recommandations, cohérence du code, niveau de prérequis, lisibilité et liens internes.
 
