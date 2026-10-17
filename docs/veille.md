@@ -59,19 +59,19 @@ L’automatisation ne doit pas publier de sa propre initiative. Avant chaque int
 
 ### Cadence de publication
 
-Viser **un article Discover de qualité par jour ouvré au maximum**, soit trois à cinq par semaine. Publier zéro article est préférable à une fiche faible ou redondante. Réserver chaque semaine une place à un contenu Learn ou à une mise à jour substantielle d’article existant ; les exercices sont ajoutés lorsqu’un sujet s’y prête.
+Il n’existe **aucune obligation de publier** par jour ou par semaine. La collecte est continue, mais une publication doit franchir le seuil de qualité défini par cette politique. Publier zéro article est préférable à une fiche faible, redondante ou insuffisamment sourcée.
 
-La rotation thématique sert de garde-fou :
+Les candidats sont arbitrés régulièrement à partir d’un backlog éditorial. Le choix dépend de l’actualité du sujet, de son impact technique, de la qualité des preuves, de l’originalité de l’analyse, de sa lisibilité et de l’équilibre général entre data engineering, analytics engineering, AI engineering et architecture. Cet équilibre est un garde-fou, jamais un quota : un thème peut revenir plusieurs fois lorsqu’il porte les seuls sujets vraiment pertinents.
 
-| Jour indicatif | Thème prioritaire |
-| --- | --- |
-| Lundi | Data engineering : moteurs, stockage, streaming, orchestration |
-| Mardi | Analytics engineering : dbt, SQL, qualité, couche sémantique |
-| Mercredi | AI engineering : modèles, inférence, RAG, agents, évaluation |
-| Jeudi | Architecture : plateformes, fiabilité, coût, sécurité, systèmes distribués |
-| Vendredi | Open source, retours terrain ou approfondissement Learn/Practice |
+## Mémoire éditoriale et backlog
 
-Cette rotation est indicative. Une annonce majeure ou un sujet mieux documenté peut prendre la place prévue, et un même thème peut revenir plusieurs jours de suite lorsqu’il a une valeur pédagogique claire.
+La collecte ne publie pas directement. Elle constitue une mémoire intermédiaire structurée :
+
+```text
+inbox → sujets regroupés → backlog d’articles → brouillons → publications ou rejets
+```
+
+Un élément de backlog conserve son thème, ses sources primaires, la date du signal le plus récent, la question éditoriale, le changement confirmé, le lecteur concerné, les contenus de contexte utiles, son statut et la raison d’une éventuelle décision de rejet. Plusieurs signaux peuvent alimenter un seul article ; un signal isolé peut aussi être archivé sans publication.
 
 ## Registre de sources
 
