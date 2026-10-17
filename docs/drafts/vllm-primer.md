@@ -9,6 +9,7 @@
 
 | Terme | Définition utile pour cet article |
 | --- | --- |
+| **Grand modèle de langage (LLM)** | Modèle entraîné sur du texte, capable notamment de produire une suite de tokens à partir d’un prompt. |
 | **Inférence** | Phase pendant laquelle un modèle déjà entraîné traite une entrée et produit une sortie. Ici, il s’agit de générer les tokens d’une réponse. |
 | **Serving** | Ensemble des mécanismes qui rendent un modèle accessible comme service : recevoir les requêtes, les planifier, exécuter le modèle et renvoyer les réponses. |
 | **Token** | Unité de texte manipulée par le modèle. Une réponse est produite token par token. |
@@ -47,7 +48,7 @@ Les définitions de KV cache et de PagedAttention sont développées dans le [pa
 
 ### vLLM, en une phrase
 
-vLLM est un logiciel qui aide à exposer un modèle de langage comme un service : une application envoie une requête, le serveur exécute le modèle sur le matériel disponible et renvoie progressivement les tokens générés. Le projet se présente comme une bibliothèque d’inférence et de serving de LLM ; il fournit notamment un serveur compatible avec l’API OpenAI. [Source : README officiel de vLLM](https://github.com/vllm-project/vllm/blob/main/README.md)
+vLLM est un logiciel qui aide à exposer un grand modèle de langage (*large language model*, **LLM**) comme un service : une application envoie une requête, le serveur exécute le modèle sur le matériel disponible et renvoie progressivement les tokens générés. Le projet se présente comme une bibliothèque d’inférence et de serving de LLM ; il fournit notamment un serveur compatible avec l’API OpenAI. [Source : README officiel de vLLM](https://github.com/vllm-project/vllm/blob/main/README.md)
 
 Cette définition est plus utile que « vLLM rend les LLM rapides », car elle situe le problème. Lorsqu’un modèle est déjà entraîné, il reste à faire fonctionner ce modèle pour de vrais utilisateurs : recevoir des requêtes, les mettre en attente, répartir le travail sur les GPU, conserver l’état de génération et limiter la latence. Un runtime d’inférence prend en charge une partie de cette mécanique.
 

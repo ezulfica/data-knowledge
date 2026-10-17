@@ -16,7 +16,7 @@ Une release n’est pas automatiquement un article. Si le lecteur ne possède pa
 
 Avant le corpus, identifier les termes qu’un lecteur doit comprendre pour lire le reste. Le lexique ne contient que les notions indispensables ; il définit chaque terme en une ou deux phrases simples et renvoie, lorsque utile, vers un article Learn plus complet. Les définitions techniques sont sourcées comme le reste du contenu.
 
-Un lexique est requis dès qu’un article introduit une technologie, une abréviation ou un mécanisme qui ne peut pas être déduit du contexte. Il ne remplace pas l’explication : le corpus réemploie ensuite les termes dans une démonstration progressive.
+Un lexique est requis dès qu’un article introduit une technologie, une abréviation ou un mécanisme qui ne peut pas être déduit du contexte. Toute abréviation est développée à sa première occurrence — par exemple « grand modèle de langage (LLM) » — puis peut être employée sous sa forme courte. Elle figure aussi dans le lexique lorsqu’elle est nécessaire à la compréhension. Le lexique ne remplace pas l’explication : le corpus réemploie ensuite les termes dans une démonstration progressive.
 
 ## 3. Recherche avant rédaction
 
@@ -49,6 +49,6 @@ L’article relie explicitement ses prérequis, contenus associés et sources. L
 
 ## 6. Relecture avant publication
 
-La relecture vérifie : précision du titre, pertinence et concision du lexique, exactitude des affirmations, source de chaque fait important, citation locale de chaque paragraphe factuel, distinction entre faits et recommandations, cohérence du code, niveau de prérequis, lisibilité et liens internes.
+La relecture vérifie : précision du titre, pertinence et concision du lexique, développement des abréviations à leur première occurrence, exactitude des affirmations, source de chaque fait important, citation locale de chaque paragraphe factuel, distinction entre faits et recommandations, cohérence du code, niveau de prérequis, lisibilité et liens internes.
 
 Un brouillon est publié seulement lorsqu’il peut être déplacé de `docs/drafts/` vers `src/content/` sans ajouter de promesse non vérifiée.
