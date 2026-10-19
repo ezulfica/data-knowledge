@@ -33,7 +33,7 @@ Le workflow actuel est volontairement semi-automatique : l’agent prépare les 
 
 ## Collecte automatique de veille
 
-Le registre initial est dans `veille/sources.json`. Le workflow `Collect technology watch signals` s’exécute chaque jour à 06:15 UTC et peut être lancé manuellement depuis GitHub Actions. Il interroge les flux Atom de releases officielles, écrit les nouveaux signaux dans `veille/inbox/` et ouvre ou met à jour la pull request `automation/veille`.
+Le registre initial est dans `veille/sources.json`. Le workflow `Collect technology watch signals` s’exécute chaque matin dans une fenêtre de 05:17 à 08:17 UTC et peut être lancé manuellement depuis GitHub Actions. GitHub ne garantit pas le démarrage exact des workflows planifiés ; plusieurs passages réduisent le risque d’une collecte tardive. Le collecteur est idempotent : il interroge les flux Atom de releases officielles, écrit seulement les nouveaux signaux dans `veille/inbox/` et ouvre ou met à jour la pull request `automation/veille`.
 
 Cette automatisation ne rédige ni ne publie d’articles. Les signaux doivent être regroupés, vérifiés et arbitrés avant de devenir un brouillon éditorial.
 

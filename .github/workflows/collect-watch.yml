@@ -2,7 +2,10 @@ name: Collect technology watch signals
 
 on:
   schedule:
-    - cron: '15 6 * * *'
+    # GitHub does not guarantee an exact cron start time. Run several times
+    # during the Paris morning; the collector is idempotent and only opens a
+    # pull request when it finds signals not already present in the inbox.
+    - cron: '17 5-8 * * *'
   workflow_dispatch:
 
 permissions:
