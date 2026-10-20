@@ -6,7 +6,7 @@ import { promisify } from 'node:util';
 const root = new URL('..', import.meta.url).pathname;
 const inbox = join(root, 'veille', 'inbox');
 const today = new Date().toISOString().slice(0, 10);
-const cutoff = Date.now() - 14 * 24 * 60 * 60 * 1000;
+const cutoff = Date.now() - 3 * 24 * 60 * 60 * 1000;
 const decode = (value = '') => value.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 const field = (entry, name) => decode(entry.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`))?.[1]);
 const href = (entry) => entry.match(/<link[^>]+href="([^"]+)"/)?.[1];
@@ -33,7 +33,9 @@ for (const source of sources) {
       const age = Date.parse(updated);
       const noisy = /nightly|^b\d+(?=[:\s]|$)|^cmd\/|(?:[-.]|\d)(?:rc|beta|alpha|b)\d*/i.test(title);
       if (!url || known.has(url) || noisy || !Number.isFinite(age) || age < cutoff || accepted >= 3) continue;
-      signals.push({ source: source.name, theme: source.theme, title, url, updated, summary: field(entry, 'content') || field(entry, 'summary') });
+      const rawSummary = field(entry, 'content') || field(entry, 'summary');
+      const summary = rawSummary.length > 800 ? `${rawSummary.slice(0, 800)}…` : rawSummary;
+      signals.push({ source: source.name, theme: source.theme, title, url, updated, summary });
       accepted += 1;
     }
   } catch (error) {
